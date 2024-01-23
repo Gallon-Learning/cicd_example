@@ -32,6 +32,20 @@ async def get_age():
     age_value = age()
     return JSONResponse(status_code=200, content={"data": age_value})
 
+def gender():
+    return 'Man'
+
+@app.get("/v1/gender",
+            description='Get gender',
+            responses={
+                        400: {"description": 'get_gender fail'},
+                        500: {"description": 'Internal server error'}
+            }
+        )
+async def get_gender():
+    gender_value = gender()
+    return JSONResponse(status_code=200, content={"data": gender_value})
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app="main:app", host="0.0.0.0", port=8000, reload=False)
